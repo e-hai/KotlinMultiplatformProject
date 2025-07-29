@@ -50,6 +50,7 @@ import kotlinmultiplatformproject.composeapp.generated.resources.label_repositor
 import kotlinmultiplatformproject.composeapp.generated.resources.label_title
 import org.jetbrains.compose.resources.stringResource
 
+
 @Composable
 fun DetailScreen(
     objectId: Int,
@@ -58,6 +59,7 @@ fun DetailScreen(
     val viewModel: DetailViewModel = viewModel()
 
     val obj by viewModel.getObject(objectId).collectAsStateWithLifecycle(initialValue = null)
+
     AnimatedContent(obj != null) { objectAvailable ->
         if (objectAvailable) {
             ObjectDetails(obj!!, onBackClick = navigateBack)

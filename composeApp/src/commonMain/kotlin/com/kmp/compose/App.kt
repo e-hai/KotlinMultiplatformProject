@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import co.touchlab.kermit.Logger
 import com.kmp.compose.screen.detail.DetailScreen
 import com.kmp.compose.screen.list.ListScreen
 import kotlinx.serialization.Serializable
@@ -21,11 +22,13 @@ object ListDestination
 @Serializable
 data class DetailDestination(val objectId: Int)
 
+
 @Composable
 fun App() {
     MaterialTheme(
         colorScheme = if (isSystemInDarkTheme()) darkColorScheme() else lightColorScheme()
     ) {
+        Logger.withTag("App").d("start run")
         Surface {
             val navController: NavHostController = rememberNavController()
             NavHost(navController = navController, startDestination = ListDestination) {
