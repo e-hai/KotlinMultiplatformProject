@@ -27,12 +27,12 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
-import com.kmp.compose.data.MuseumObject
+import com.kmp.compose.data.Museum
 import com.kmp.compose.screen.EmptyScreenContent
 
 @Composable
 fun ListScreen(
-    navigateToDetails: (objectId: Int) -> Unit
+    navigateToDetails: (objectId: Long) -> Unit
 ) {
     val viewModel: ListViewModel = viewModel()
     val objects by viewModel.objects.collectAsStateWithLifecycle()
@@ -51,8 +51,8 @@ fun ListScreen(
 
 @Composable
 private fun ObjectGrid(
-    objects: List<MuseumObject>,
-    onObjectClick: (Int) -> Unit,
+    objects: List<Museum>,
+    onObjectClick: (Long) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyVerticalGrid(
@@ -71,7 +71,7 @@ private fun ObjectGrid(
 
 @Composable
 private fun ObjectFrame(
-    obj: MuseumObject,
+    obj: Museum,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {

@@ -6,7 +6,7 @@ import io.ktor.client.request.get
 import io.ktor.utils.io.CancellationException
 
 interface MuseumApi {
-    suspend fun getData(): List<MuseumObject>
+    suspend fun getData(): List<Museum>
 }
 
 class KtorMuseumApi(private val client: HttpClient) : MuseumApi {
@@ -15,7 +15,7 @@ class KtorMuseumApi(private val client: HttpClient) : MuseumApi {
             "https://raw.githubusercontent.com/Kotlin/KMP-App-Template/main/list.json"
     }
 
-    override suspend fun getData(): List<MuseumObject> {
+    override suspend fun getData(): List<Museum> {
         return try {
             client.get(API_URL).body()
         } catch (e: Exception) {

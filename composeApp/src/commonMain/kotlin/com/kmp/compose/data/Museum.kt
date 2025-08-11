@@ -3,8 +3,8 @@ package com.kmp.compose.data
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MuseumObject(
-    val objectID: Int,
+data class Museum(
+    val objectID: Long,
     val title: String,
     val artistDisplayName: String,
     val medium: String,

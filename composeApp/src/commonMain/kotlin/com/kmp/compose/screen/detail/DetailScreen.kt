@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
-import com.kmp.compose.data.MuseumObject
+import com.kmp.compose.data.Museum
 import com.kmp.compose.screen.EmptyScreenContent
 import kotlinmultiplatformproject.composeapp.generated.resources.Res
 import kotlinmultiplatformproject.composeapp.generated.resources.back
@@ -53,7 +53,7 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun DetailScreen(
-    objectId: Int,
+    objectId: Long,
     navigateBack: () -> Unit,
 ) {
     val viewModel: DetailViewModel = viewModel()
@@ -71,7 +71,7 @@ fun DetailScreen(
 
 @Composable
 private fun ObjectDetails(
-    obj: MuseumObject,
+    obj: Museum,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {

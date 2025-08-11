@@ -1,0 +1,61 @@
+CREATE TABLE museum (
+    objectID INTEGER NOT NULL PRIMARY KEY,
+    title TEXT NOT NULL,
+    artistDisplayName TEXT NOT NULL,
+    medium TEXT NOT NULL,
+    dimensions TEXT NOT NULL,
+    objectURL TEXT NOT NULL,
+    objectDate TEXT NOT NULL,
+    primaryImage TEXT NOT NULL,
+    primaryImageSmall TEXT NOT NULL,
+    repository TEXT NOT NULL,
+    department TEXT NOT NULL,
+    creditLine TEXT NOT NULL
+);
+
+CREATE INDEX museum_title ON museum(title);
+CREATE INDEX museum_artist ON museum(artistDisplayName);
+
+-- 查询所有博物馆对象
+selectAll:
+SELECT * FROM museum;
+
+-- 根据ID查询博物馆对象
+selectById:
+SELECT * FROM museum
+WHERE objectID = ?;
+
+-- 根据标题查询博物馆对象
+selectByTitle:
+SELECT * FROM museum
+WHERE title LIKE ?;
+
+-- 根据艺术家名称查询博物馆对象
+selectByArtist:
+SELECT * FROM museum
+WHERE artistDisplayName LIKE ?;
+
+-- 插入博物馆对象
+insert:
+INSERT INTO museum (objectID, title, artistDisplayName, medium, dimensions, objectURL, objectDate, primaryImage, primaryImageSmall, repository, department, creditLine)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- 批量插入博物馆对象
+insertBatch:
+INSERT INTO museum (objectID, title, artistDisplayName, medium, dimensions, objectURL, objectDate, primaryImage, primaryImageSmall, repository, department, creditLine)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- 更新博物馆对象
+update:
+UPDATE museum
+SET title = ?, artistDisplayName = ?, medium = ?, dimensions = ?, objectURL = ?, objectDate = ?, primaryImage = ?, primaryImageSmall = ?, repository = ?, department = ?, creditLine = ?
+WHERE objectID = ?;
+
+-- 删除博物馆对象
+delete:
+DELETE FROM museum
+WHERE objectID = ?;
+
+-- 删除所有博物馆对象
+deleteAll:
+DELETE FROM museum;

@@ -61,9 +61,18 @@ kotlin {
             implementation(libs.ktor.client.logging)
             implementation(libs.kermit.log)
             implementation(libs.sqldelight.runtime)
+            implementation(libs.sqldelight.coroutines.extensions)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+    }
+
+    sqldelight {
+        databases {
+            create("AppDatabase") {
+                packageName.set("com.jetbrains.spacetutorial.cache")
+            }
         }
     }
 }
@@ -74,7 +83,6 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
     }
     packaging {
         resources {

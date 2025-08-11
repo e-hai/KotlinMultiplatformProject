@@ -51,7 +51,7 @@ class MuseumRepository private constructor(
         museumStorage.saveObjects(museumApi.getData())
     }
 
-    fun getObjects(): Flow<List<MuseumObject>> = museumStorage.getObjects()
+    fun getObjects(): Flow<List<Museum>> = museumStorage.getObjects()
 
-    fun getObjectById(objectId: Int): Flow<MuseumObject?> = museumStorage.getObjectById(objectId)
+    fun getObjectById(objectId: Long): Flow<Museum?> = museumStorage.getObjectById(objectId)
 }

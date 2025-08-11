@@ -20,15 +20,16 @@ import kotlinx.serialization.Serializable
 object ListDestination
 
 @Serializable
-data class DetailDestination(val objectId: Int)
+data class DetailDestination(val objectId: Long)
 
 
 @Composable
-fun App() {
+fun Main() {
     MaterialTheme(
         colorScheme = if (isSystemInDarkTheme()) darkColorScheme() else lightColorScheme()
     ) {
         Logger.withTag("App").d("start run")
+
         Surface {
             val navController: NavHostController = rememberNavController()
             NavHost(navController = navController, startDestination = ListDestination) {
