@@ -10,7 +10,8 @@ CREATE TABLE museum (
     primaryImageSmall TEXT NOT NULL,
     repository TEXT NOT NULL,
     department TEXT NOT NULL,
-    creditLine TEXT NOT NULL
+    creditLine TEXT NOT NULL,
+    age INTEGER
 );
 
 CREATE INDEX museum_title ON museum(title);

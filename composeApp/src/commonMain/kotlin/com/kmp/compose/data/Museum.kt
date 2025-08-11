@@ -16,4 +16,5 @@ data class Museum(
     val repository: String,
     val department: String,
     val creditLine: String,
+    val description: String="",
 )

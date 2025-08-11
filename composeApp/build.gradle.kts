@@ -72,6 +72,7 @@ kotlin {
         databases {
             create("AppDatabase") {
                 packageName.set("com.jetbrains.spacetutorial.cache")
+                schemaOutputDirectory.set(file("src/commonMain/sqldelight/database"))
             }
         }
     }
@@ -95,8 +96,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
