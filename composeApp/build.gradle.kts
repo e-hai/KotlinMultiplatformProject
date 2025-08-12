@@ -62,6 +62,12 @@ kotlin {
             implementation(libs.kermit.log)
             implementation(libs.sqldelight.runtime)
             implementation(libs.sqldelight.coroutines.extensions)
+            implementation(libs.moko.permissions)
+            implementation(libs.moko.permissions.compose)
+            implementation(libs.moko.permissions.test)
+            implementation(libs.moko.permissions.storage)
+            implementation(libs.moko.permissions.camera)
+            implementation(libs.moko.permissions.gallery)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

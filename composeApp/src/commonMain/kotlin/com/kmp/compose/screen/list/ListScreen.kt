@@ -20,6 +20,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -29,6 +31,20 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
 import com.kmp.compose.data.Museum
 import com.kmp.compose.screen.EmptyScreenContent
+import com.kmp.compose.utils.Log
+import dev.icerock.moko.permissions.DeniedAlwaysException
+import dev.icerock.moko.permissions.DeniedException
+import dev.icerock.moko.permissions.Permission
+import dev.icerock.moko.permissions.PermissionsController
+import dev.icerock.moko.permissions.camera.CAMERA
+import dev.icerock.moko.permissions.compose.BindEffect
+import dev.icerock.moko.permissions.compose.PermissionsControllerFactory
+import dev.icerock.moko.permissions.compose.rememberPermissionsControllerFactory
+import dev.icerock.moko.permissions.gallery.GALLERY
+import dev.icerock.moko.permissions.storage.STORAGE
+import dev.icerock.moko.permissions.storage.WRITE_STORAGE
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 @Composable
 fun ListScreen(
@@ -37,11 +53,32 @@ fun ListScreen(
     val viewModel: ListViewModel = viewModel()
     val objects by viewModel.objects.collectAsStateWithLifecycle()
 
+    val factory: PermissionsControllerFactory = rememberPermissionsControllerFactory()
+    val controller: PermissionsController =
+        remember(factory) { factory.createPermissionsController() }
+    BindEffect(controller)
+    val coroutineScope: CoroutineScope = rememberCoroutineScope()
+
     AnimatedContent(objects.isNotEmpty()) { objectsAvailable ->
         if (objectsAvailable) {
             ObjectGrid(
                 objects = objects,
-                onObjectClick = navigateToDetails,
+                onObjectClick = { id ->
+                    coroutineScope.launch {
+                        try {
+                            controller.providePermission(Permission.CAMERA)
+                            // Permission has been granted successfully.
+                            Log.d("Permissions", "Camera permission granted")
+                            navigateToDetails(id)
+                        } catch (deniedAlways: DeniedAlwaysException) {
+                            // Permission is always denied.
+                            Log.wtf("Permissions", "Camera permission denied always", deniedAlways)
+                        } catch (denied: DeniedException) {
+                            // Permission was denied.
+                            Log.wtf("Permissions", "Camera permission denied", denied)
+                        }
+                    }
+                },
             )
         } else {
             EmptyScreenContent(Modifier.fillMaxSize())

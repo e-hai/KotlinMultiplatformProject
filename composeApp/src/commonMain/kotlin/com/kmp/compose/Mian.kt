@@ -28,8 +28,6 @@ fun Main() {
     MaterialTheme(
         colorScheme = if (isSystemInDarkTheme()) darkColorScheme() else lightColorScheme()
     ) {
-        Logger.withTag("App").d("start run")
-
         Surface {
             val navController: NavHostController = rememberNavController()
             NavHost(navController = navController, startDestination = ListDestination) {
