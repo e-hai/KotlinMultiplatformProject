@@ -16,6 +16,7 @@ import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -62,7 +63,12 @@ fun DetailScreen(
 
     AnimatedContent(obj != null) { objectAvailable ->
         if (objectAvailable) {
-            ObjectDetails(obj!!, onBackClick = navigateBack)
+            ObjectDetails(
+                obj!!,
+                onBackClick = navigateBack,
+                onSaveClick = {
+                    viewModel.savePhoto(it)
+                })
         } else {
             EmptyScreenContent(Modifier.fillMaxSize())
         }
@@ -73,6 +79,7 @@ fun DetailScreen(
 private fun ObjectDetails(
     obj: Museum,
     onBackClick: () -> Unit,
+    onSaveClick: (path: String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
@@ -84,7 +91,14 @@ private fun ObjectDetails(
                     IconButton(onClick = onBackClick) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(Res.string.back))
                     }
-                }
+                },
+                actions = {
+                    IconButton(onClick = {
+                        onSaveClick(obj.primaryImage)
+                    }) {
+                        Icon(Icons.AutoMirrored.Filled.Send, stringResource(Res.string.back))
+                    }
+                },
             )
         },
         modifier = modifier.windowInsetsPadding(WindowInsets.systemBars),

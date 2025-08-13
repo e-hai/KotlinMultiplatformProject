@@ -16,7 +16,7 @@ kotlin = "2.2.0"
 lifecycleRuntimeKtx = "2.9.2"
 composeBom = "2025.07.00"
 #http
-ktor = "3.2.2"
+ktor = "3.2.3"
 #图片
 coil = "3.3.0"
 #log
@@ -24,7 +24,13 @@ kermitLog = "2.0.6"
 #数据库
 sqlDelight = "2.1.0"
 #权限
-mokoPermissions = "0.19.0"
+mokoPermissions = "0.19.1"
+#保存文件
+fileKit = "0.10.0"
+#io
+okio="3.16.0"
+#日期时间
+kotlinxDatetime = "0.7.1"
 
 [libraries]
 junit = { module = "junit:junit", version.ref = "junit" }
@@ -72,6 +78,12 @@ moko-permissions-gallery = { group = "dev.icerock.moko", name = "permissions-gal
 moko-permissions-storage = { group = "dev.icerock.moko", name = "permissions-storage", version.ref = "mokoPermissions" }
 moko-permissions-compose = { group = "dev.icerock.moko", name = "permissions-compose", version.ref = "mokoPermissions" }
 moko-permissions-test = { group = "dev.icerock.moko", name = "permissions-test", version.ref = "mokoPermissions" }
+#保存文件
+filekit-core = { group = "io.github.vinceglb", name = "filekit-core", version.ref = "fileKit" }
+#io
+okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
+#日期时间
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

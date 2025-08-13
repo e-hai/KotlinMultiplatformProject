@@ -24,7 +24,7 @@ object Log {
         Logger.withTag(tag).v(message)
     }
 
-    fun wtf(tag: String, message: String, exception: Exception) {
-        Logger.withTag(tag).e(message, exception)
+    fun wtf(tag: String, message: String, throwable: Throwable) {
+        Logger.withTag(tag).e(message, throwable)
     }
 }

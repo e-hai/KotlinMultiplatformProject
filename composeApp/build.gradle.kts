@@ -68,6 +68,9 @@ kotlin {
             implementation(libs.moko.permissions.storage)
             implementation(libs.moko.permissions.camera)
             implementation(libs.moko.permissions.gallery)
+            implementation(libs.filekit.core)
+            implementation(libs.okio)
+            implementation(libs.kotlinx.datetime)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
